@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-# cybersecurite-portfolio
-Labo personnel et projets pratique en cybersécurité ( réseaux, pentest, AD, scripting Python)
-=======
+
 # Portfolio Cybersécurité — Zakaria Diallo
 
 Labo personnel et projets pratiques réalisés dans le cadre de ma préparation à une alternance en cybersécurité (rentrée 2027-2028), actuellement en Prépa Cycle Ingénieur à ESIEE-IT.
@@ -36,4 +33,4 @@ Réseaux (OSI, TCP/IP, sous-réseaux, VLSM) · DHCP/DNS/ARP · SSH/Telnet · Nma
 ---
 
 *Ce repo est mis à jour au fil de ma progression.*
->>>>>>> 86e12d9 (Ajout scripts Python, notes reseaux et structure du portfolio)
+86e12d9 (Ajout scripts Python, notes reseaux et structure du portfolio)
