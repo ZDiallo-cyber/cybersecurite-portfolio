@@ -17,6 +17,7 @@ Tout le contenu de ce repo est produit sur un environnement de laboratoire perso
 
 | Fiche | Contenu |
 |---|---|
+| [`notes/fiche_cybersecurite_zak.md`](notes/fiche_cybersecurite_zak.md) | Modèle OSI, TCP/IP, ARP, DNS, HTTP/HTTPS, Wireshark, Nmap, Metasploit, John the Ripper, GoPhish, commandes Linux essentielles |
 | [`notes/subnetting-dhcp-ssh.md`](notes/subnetting-dhcp-ssh.md) | Sous-réseaux IPv4 (calcul, VLSM), DHCP (processus DORA, angle sécurité), SSH vs Telnet (démonstration Wireshark) |
 
 ## 🖥️ Labo Active Directory
