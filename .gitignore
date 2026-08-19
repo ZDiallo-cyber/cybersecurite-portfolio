@@ -1,0 +1,13 @@
+# Fichiers temporaires VS Code / Python
+tempCodeRunnerFile.py
+tempCodeRunnerFile.python
+
+# Rapports générés automatiquement
+rapport_securite.txt
+
+# Cache Python
+__pycache__/
+*.pyc
+# Logs utilisés pour les tests
+auth.log
+auth_long.log
