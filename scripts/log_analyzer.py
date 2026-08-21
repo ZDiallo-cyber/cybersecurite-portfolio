@@ -47,16 +47,16 @@ def analyser_logs(Nom_Fichier):
                  else:
                   compteur[ip]=1
 
-                  if ip in users_ip:
+                 if ip in users_ip:
                      users_ip[ip].append(user)
-                  else:
+                 else:
                      users_ip[ip]=[user]
 
                 else:
-                   Lignes_ignorees.append(f"IP invalide: {ip}")
+                  Lignes_ignorees.append(f"IP invalide: {ip}")
             else:
-                Lignes_ignorees.append(ligne.strip())
-                
+               Lignes_ignorees.append(ligne.strip())
+              
     except FileNotFoundError:
       print(f"ERREUR : le fichier {Nom_Fichier} est introuvable")
     return compteur, heure_ip, users_ip,Lignes_ignorees
@@ -74,6 +74,22 @@ def detecter_bruteforce(compteur,heure_ip,users_ip,seuil,fenetre):
              
              premiere=heures[i]
              derniere=heures[i+seuil-1]
+             tentatives_fenetre=0
+
+             debut_fenetre=heures[i]
+             debut_fenetre=datetime.strptime(debut_fenetre, "%H:%M:%S")
+
+             for j in range(i, len(heures)):
+                heure_test=heures[j]
+                heure_test=datetime.strptime(heure_test, "%H:%M:%S")
+
+                secondes_ecoulees=(heure_test-debut_fenetre).total_seconds()
+
+                if secondes_ecoulees<=fenetre:
+                   tentatives_fenetre+=1
+                else:
+                   break
+
 
              debut=premiere
              fin=derniere
@@ -89,7 +105,7 @@ def detecter_bruteforce(compteur,heure_ip,users_ip,seuil,fenetre):
 
                 suspects.append({
                    "ip": ip, 
-                   "tentatives": tentatives,
+                   "tentatives": tentatives_fenetre,
                    "secondes":secondes,
                    "utilisateurs":list(set(users_ip[ip])),
                    "Debut":debut,
@@ -143,7 +159,7 @@ def verifier_ip(ip):
       if nombre< 0 or nombre >255:
          ip_valide= False
          break
-      return ip_valide 
+   return ip_valide 
 
 def afficher_Lignes_ignorees(Lignes_ignorees):
    print()
@@ -192,14 +208,14 @@ def generer_rapport(suspects,Lignes_ignorees):
       for element in Lignes_ignorees:
           fichier.write(f"- {element}\n")
 
-def calculer_gravite(secondes,tentatives):
-   if tentatives>=10 and secondes<=5:
+def calculer_gravite(secondes,tentatives_fenetre):
+   if tentatives_fenetre>=10 and secondes<=5:
       return "critique"
-   elif tentatives >=6 and secondes<=30:
+   elif tentatives_fenetre >=6 and secondes<=30:
       return "ÉLEVÉE"
-   elif tentatives>=4 and secondes<=30:
+   elif tentatives_fenetre>=4 and secondes<=30:
       return "MOYENNE"
-   elif tentatives>=4 and secondes<=60:
+   elif tentatives_fenetre>=4 and secondes<=60:
       return "FAIBLE"
    else:
       return "NON CLASSÉE"
